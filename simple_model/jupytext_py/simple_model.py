@@ -115,4 +115,28 @@ for i in range(25):
 
 plt.show()
 
+# %% [markdown]
+# # build the model
+
+# %%
+model = tf.keras.Sequential([
+    tf.keras.layers.Flatten(input_shape=(28,28)),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dense(10)
+])
+
+
+# %%
+def relu(x):
+    return np.maximum(0, x)
+
+x = np.arange(-5, 5, 0.1)
+plt.ylim(-1, 5)
+plt.grid()
+plt.plot(x, relu(x))
+plt.show()
+
+# %%
+model.summary()
+
 # %%
