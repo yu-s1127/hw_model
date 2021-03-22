@@ -192,11 +192,11 @@ test_labels[0]
 # %% [markdown]
 # ## prob model
 
-# %% [markdown]
-# prob_model = tf.keras.Sequential([
-#     model,
-#     tf.keras.layers.Softmax()
-# ])
+# %%
+prob_model = tf.keras.Sequential([
+    model,
+    tf.keras.layers.Softmax()
+])
 
 # %%
 predictions = prob_model.predict(test_images_norm)
@@ -261,5 +261,26 @@ verify_prediction(1)
 
 # %%
 verify_prediction(2)
+
+# %% [markdown]
+# # save and load the model
+
+# %%
+prob_model.compile(
+    loss=tf.keras.losses.SparseCategoricalCrossentropy(),
+    optimizer="adam",
+    metrics=["sparse_categorical_accuracy"]
+)
+
+prob_model.save("../saved_models/simple_model.h5")
+
+# %%
+loaded_model = tf.keras.models.load_model("../saved_models/simple_model.h5")
+
+# %%
+loaded_model.evaluate(test_images_norm, test_labels)
+
+# %%
+prob_model.evaluate(test_images_norm, test_labels)
 
 # %%
