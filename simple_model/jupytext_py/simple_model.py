@@ -192,11 +192,11 @@ test_labels[0]
 # %% [markdown]
 # ## prob model
 
-# %%
-prob_model = tf.keras.Sequential([
-    model,
-    tf.keras.layers.Softmax()
-])
+# %% [markdown]
+# prob_model = tf.keras.Sequential([
+#     model,
+#     tf.keras.layers.Softmax()
+# ])
 
 # %%
 predictions = prob_model.predict(test_images_norm)
@@ -218,5 +218,48 @@ np.argsort(-predictions[0])
 
 # %%
 np.argsort(-raw_predictions[0])
+
+# %% [markdown]
+# # verify model
+
+# %%
+plt.imshow(test_images_norm[0], cmap=plt.cm.binary)
+plt.show()
+
+# %%
+plt.bar(range(10), predictions[0])
+plt.xticks(range(10))
+plt.show()
+
+# %%
+plt.figure(figsize=(6,3))
+plt.subplot(1,2,1)
+plt.imshow(test_images_norm[0], cmap=plt.cm.binary)
+
+plt.subplot(1,2,2)
+plt.bar(range(10), predictions[0])
+plt.xticks(range(10))
+
+plt.show()
+
+
+# %%
+def verify_prediction(i):
+    plt.figure(figsize=(6,3))
+    plt.subplot(1,2,1)
+    plt.imshow(test_images_norm[i], cmap=plt.cm.binary)
+
+    plt.subplot(1,2,2)
+    plt.bar(range(10), predictions[i])
+    plt.xticks(range(10))
+
+    plt.show()
+
+
+# %%
+verify_prediction(1)
+
+# %%
+verify_prediction(2)
 
 # %%
