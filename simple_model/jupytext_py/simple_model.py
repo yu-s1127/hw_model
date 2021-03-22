@@ -162,4 +162,13 @@ model.fit(
 # %%
 60000 / 32
 
+# %% [markdown]
+# # evaluate
+
+# %%
+model.evaluate(test_images_norm, test_labels, verbose=2)
+
+# %%
+10000 / 32
+
 # %%
