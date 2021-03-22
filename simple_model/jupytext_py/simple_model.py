@@ -139,4 +139,14 @@ plt.show()
 # %%
 model.summary()
 
+# %% [markdown]
+# # compile the model
+
+# %%
+model.compile(
+    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+    optimizer="adam",
+    metrics=["accuracy"]
+)
+
 # %%
